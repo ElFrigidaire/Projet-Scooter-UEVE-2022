@@ -18,7 +18,9 @@ public class Scooter {
 		this.kilometrage = kilometrage;
 		this.park = park;
 	}
-	
+	/**
+	J'ai été con, j'ai codé ça comme si on avait pas d'interface graphique. ça sert donc à rien mais au moins on a le squelette/ un exemple
+	*/
 	public void numScooter() {
 		Scanner clav = new Scanner(System.in);
 		System.out.print("Entrez le numéro du scooter que vous voulez réserver : ");

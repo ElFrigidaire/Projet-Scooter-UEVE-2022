@@ -19,7 +19,8 @@ public class Client {
 	public String nom;
 	public String prenom;
 	public int age;
-	public ArrayList<Location> listeLocations;
+	public ArrayList<Location> listeLocationsEnCours;
+	public ArrayList<Retour> listeRetours;
 	/**
      * Default constructor
      */
@@ -31,7 +32,8 @@ public class Client {
     	this.nom = nom;
     	this.prenom = prenom;
     	this.age = age;
-    	this.listeLocations = ArrayList<Location>();
+    	this.listeLocationsEnCours = new ArrayList<Location>();
+    	this.listeRetours = new ArrayList<Retour>();
     }
     
     public String toString() { 
@@ -82,7 +84,7 @@ public class Client {
     	}
     	return null;
 }
-    public Scooter choixDuScooterARetourner() {
+    public int choixDuScooterARetourner() {
     	Scanner clav = new Scanner(System.in);
     	int numChoisi;
     	boolean arreterLeChoix = false;
@@ -92,11 +94,11 @@ public class Client {
         	boolean scooterTrouve = false;
         	
     		//Je parcours la liste de ,location du client 
-    		for (int a = 0; a < this.listeLocations.size(); a++) {
+    		for (int a = 0; a < this.listeLocationsEnCours.size(); a++) {
     			
     			//Je regarde si le scooter est dans la liste des locations
-    			if (this.listeLocations.get(a).scooterLoué.numero == numChoisi) {
-    				Scooter scooterChoisi = this.listeLocations.get(a).scooterLoué;
+    			if (this.listeLocationsEnCours.get(a).scooterLoué.numero == numChoisi) {
+    				Scooter scooterChoisi = this.listeLocationsEnCours.get(a).scooterLoué;
 				//Est-ce que ce scooter a été loué?
 					if (scooterChoisi.estDisponible) {
 						System.out.println("Le Scooter #"+numChoisi+" n'a pas été loué");
@@ -106,7 +108,7 @@ public class Client {
 					else {
 						System.out.println("Merci de votre confiance. Nous espérons que la location s'est bien passée");
 						scooterTrouve = true;
-						return scooterChoisi;
+						return a;
 						}					
     			}
     		}
@@ -119,7 +121,7 @@ public class Client {
         	if (choix.equals("n")) {
         		arreterLeChoix=true;
         	}
-
     	}
+    	return -666;
     }
 }

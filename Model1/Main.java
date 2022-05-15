@@ -117,20 +117,25 @@ public class Main {
   	    Date date_debut = new SimpleDateFormat("dd/MM/yyyy").parse("18/01/2002");
   	    Date date_fin = new SimpleDateFormat("dd/MM/yyyy").parse("20/01/2002");
   	    Location location = new Location(date_debut, date_fin, scooterChoisi);
-  	    clientEnCours.listeLocations.add(location);
+  	    clientEnCours.listeLocationsEnCours.add(location);
   	    //parc.location=location;
 	}
 	
-	public static void retournerUnScooter(Scooter[] listeScooters, ArrayList<Client> listeClient) {
+	public static void retournerUnScooter(Scooter[] listeScooters, ArrayList<Client> listeClient)throws Exception {
 		
 		//Identification du client 
   	    Client clientEnCours = identificationClient(listeClient);
     	  
   	    //Demande du scooter réservé
-  	    numero_scooter = clientEnCours.choixDuScooter(listeScooters);
-  	    if (scooterChoisi == null) {
-  	    	System.out.println("Nous regrettons ne pas avoir de quoi vous satisfaire, nous espérons vous revoir une prochaine fois.");
-  	    	return ;
+  	    int idxLocation = clientEnCours.choixDuScooterARetourner();
+  	    Scooter scooterChoisi = clientEnCours.listeLocationsEnCours.get(idxLocation).scooterLoué;
+  	    
+  	    //Création du retour
+  	    Date date = new SimpleDateFormat("dd/MM/yyyy").parse("18/01/2002");
+  	    Retour retour = new Retour(date, scooterChoisi);
+  	    retour.demanderKilometrage();
+  	    Location location = clientEnCours.listeLocationsEnCours.remove(idxLocation);
+  	    clientEnCours.listeRetours.add(retour);
 
 	}
 }    

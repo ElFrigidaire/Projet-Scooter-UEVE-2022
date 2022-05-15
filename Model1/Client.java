@@ -2,6 +2,7 @@ package Model1;
 
 
 import java.util.*;
+import java.util.Scanner;
 
 /**
  * 
@@ -33,12 +34,25 @@ public class Client {
     
     public String toString() { 
     	return "Client #"+this.numero_client+", adresse : "+this.adresse+", email : "+this.mail+", téléphone :"+this.telephone+", nom : "+this.nom+", prénom : " +this.prenom + ", age : " + this.age;
-    }
+    } 
     
-//    public String choixDuScooter() {
-//    	System.out.println
-//    }
-    
-    //public Set<Location> listClient;
-
+    public int choixDuScooter(Scooter[] listeScooter) {
+    	Scanner clav = new Scanner(System.in);
+    	int numChoisi;
+    	System.out.println("Veuillez entrer le numéro du Scooter choisi");
+    	numChoisi = Integer.parseInt(clav.nextLine());
+    	for (int a = 0; a < listeScooter.length; a++) {
+        	if (listeScooter[a].numero == numChoisi) {
+        		if (listeScooter[a].estDisponible) {
+        			System.out.println("Le Scooter #"+numChoisi+" est disponible");
+        		}
+        		else {
+        		System.out.println("Ce Scooter est déjà loué, il sera discponible le :"/**+Location.date_fin*/);
+        		}
+        		return numChoisi;
+        		}
+        	}
+    	System.out.println("Erreur, ce numéro n'est pas attribué");
+    	return -666;
+}
 }

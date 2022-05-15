@@ -17,6 +17,10 @@ public class Retour {
     	this.date = date;
     	this.modele = modele;
     }
+    
+    public String toString() {
+    	return "Date de retour : " + this.date + ", modèle retourné : "+this.modele; 
+    }
 
     /**
      * 

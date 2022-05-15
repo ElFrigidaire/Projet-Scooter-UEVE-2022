@@ -51,7 +51,10 @@ public class Main {
   	    String[] noms = {"Barneche", "Auzannet","Tarek", "Melliti"};
   	    ArrayList<Client> listeClients = init_BDD_clients(4, nomsRues,prenoms,noms);	
   	    
+  	    //Location d'un scooter
   	    louerUnScooter(listeClients,listeScooter);
+  	    
+  	    //Debug
   	    for (int i=0;i<listeClients.size();i++) {
   	    	System.out.println("Client : "+listeClients.get(i).toString());
   	    }
@@ -104,7 +107,7 @@ public class Main {
   	    Client clientEnCours = identificationClient(listeClients);
   	    
   	  //Demande du scooter choisi
-  	    Scooter scooterChoisi = clientEnCours.choixDuScooter(listeScooters);
+  	    Scooter scooterChoisi = clientEnCours.choixDuScooterALouer(listeScooters);
   	    if (scooterChoisi == null) {
   	    	System.out.println("Nous regrettons ne pas avoir de quoi vous satisfaire, nous espérons vous revoir une prochaine fois.");
   	    	return ;
@@ -114,8 +117,21 @@ public class Main {
   	    Date date_debut = new SimpleDateFormat("dd/MM/yyyy").parse("18/01/2002");
   	    Date date_fin = new SimpleDateFormat("dd/MM/yyyy").parse("20/01/2002");
   	    Location location = new Location(date_debut, date_fin, scooterChoisi);
-  	    clientEnCours.location = location;
+  	    clientEnCours.listeLocations.add(location);
   	    //parc.location=location;
+	}
+	
+	public static void retournerUnScooter(Scooter[] listeScooters, ArrayList<Client> listeClient) {
+		
+		//Identification du client 
+  	    Client clientEnCours = identificationClient(listeClient);
+    	  
+  	    //Demande du scooter réservé
+  	    numero_scooter = clientEnCours.choixDuScooter(listeScooters);
+  	    if (scooterChoisi == null) {
+  	    	System.out.println("Nous regrettons ne pas avoir de quoi vous satisfaire, nous espérons vous revoir une prochaine fois.");
+  	    	return ;
+
 	}
 }    
 

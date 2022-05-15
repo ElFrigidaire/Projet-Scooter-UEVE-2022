@@ -72,7 +72,8 @@ public class Client {
     		
     		System.out.println("Voulez-vous entrer un autre numéro? [y]/n");
         	String choix = clav.nextLine();
-        	if (choix == "n") {
+        	System.out.println(choix);
+        	if (choix.equals("n")) {
         		arreterLeChoix=true;
         	}
 

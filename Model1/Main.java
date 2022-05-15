@@ -47,10 +47,15 @@ public class Main {
   	    String[] nomsRues = {"avenue de POO","rue de Cacahouète","boulevard du Frigidaire"};
   	    String[] prenoms = {"Jonathan","Thomas","Plouf","Antoinette"};
   	    String[] noms = {"Barneche", "Auzannet","Tarek", "Melliti"};
-  	    ArrayList<Client> listeClients = init_BDD_clients(4, nomsRues,prenoms,noms);	  
-  	  	  
-    	  
-
+  	    ArrayList<Client> listeClients = init_BDD_clients(4, nomsRues,prenoms,noms);	
+  	    
+  	    louerUnScooter(listeClients,listeScooter);
+  	    for (int i=0;i<listeClients.size();i++) {
+  	    	System.out.println("Client : "+listeClients.get(i).toString());
+  	    }
+  	    for (int i=0;i<listeScooter.length;i++) {
+	    	System.out.println("Scooter : "+listeScooter[i].toString());
+	    }
   	    }
   	    
 	static public Client identificationClient(ArrayList<Client> listeClient) {
@@ -87,6 +92,7 @@ public class Main {
 		int age = Integer.parseInt(clav.nextLine());
 		Client client = new Client(listeClient.size(), adresse, email, telephone, nom ,prenom, age);
 		listeClient.add(client);
+		System.out.println("Vous avez bien été créé, bienvenue!");
 	
 	   	return client;
 	}

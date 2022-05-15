@@ -97,18 +97,29 @@ public class Client {
     			//Je regarde si le scooter est dans la liste des locations
     			if (this.listeLocations.get(a).scooterLoué.numero == numChoisi) {
     				Scooter scooterChoisi = this.listeLocations.get(a).scooterLoué;
-    		}
 				//Est-ce que ce scooter a été loué?
-				if (scooterChoisi.estDisponible) {
-					System.out.println("Le Scooter #"+numChoisi+" n'a pas été loué");
-					return scooterChoisi;
-				}
-				else {
-					System.out.println("Merci de votre confiance. Nous espérons que la location s'est bien passé");
-					scooterTrouve = true;
-					break;
+					if (scooterChoisi.estDisponible) {
+						System.out.println("Le Scooter #"+numChoisi+" n'a pas été loué");
+						scooterTrouve=true;
+						break;
 					}
+					else {
+						System.out.println("Merci de votre confiance. Nous espérons que la location s'est bien passée");
+						scooterTrouve = true;
+						return scooterChoisi;
+						}					
+    			}
     		}
+    		if(scooterTrouve==false) {
+    			System.out.println("Vous n'avez pas loué ce scooter. Cependant, les scooters "); 
+    		}
+    		System.out.println("Voulez-vous entrer un autre numéro? [y]/n");
+        	String choix = clav.nextLine();
+        	System.out.println(choix);
+        	if (choix.equals("n")) {
+        		arreterLeChoix=true;
+        	}
+
     	}
     }
 }

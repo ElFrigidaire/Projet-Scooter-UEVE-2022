@@ -138,6 +138,19 @@ public class Main {
   	    clientEnCours.listeRetours.add(retour);
 
 	}
+	
+	public static void verifierEtatScooter() {
+	}
+	
+	public static void affichageEtatParcScooter() {
+	}
+	
+	public static void afficherResumeParcScooters() {
+	}
+	
+	public static void quitterProgramme() {
+		
+	}
 }    
 
 

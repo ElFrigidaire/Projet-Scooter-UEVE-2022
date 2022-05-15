@@ -18,7 +18,7 @@ import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class FenetreAcceuil extends JFrame {
+public class FenetreAccueil extends JFrame {
 	
 	
 	private static final long serialVersionUID = 1L;
@@ -30,7 +30,7 @@ public class FenetreAcceuil extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					FenetreAcceuil frame = new FenetreAcceuil();
+					FenetreAccueil frame = new FenetreAccueil();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -41,7 +41,7 @@ public class FenetreAcceuil extends JFrame {
 
 	
 	
-	public FenetreAcceuil() {
+	public FenetreAccueil() {
 		
 		
 		setTitle("LouScoot");

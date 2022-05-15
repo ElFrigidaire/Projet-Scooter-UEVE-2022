@@ -48,14 +48,17 @@ public class Main {
   	    String[] prenoms = {"Jonathan","Thomas","Plouf","Antoinette"};
   	    String[] noms = {"Barneche", "Auzannet","Tarek", "Melliti"};
   	    ArrayList<Client> listeClients = init_BDD_clients(4, nomsRues,prenoms,noms);	  
-  	  
-  	    //Demande du numéro de scooter choisi
-	  
+  	  	  
     	  
   	  //Identification du client 
- 
-  	  
+  	    Client clientEnCours = identificationClient(listeClients);
+  	    
   	  //Demande du numéro de scooter choisi
+  	    Scooter scooterChoisi = clientEnCours.choixDuScooter(listeScooter);
+  	    if (scooterChoisi == null) {
+  	    	System.out.println("Nous regrettons ne pas avoir de quoi vous satisfaire, nous espérons vous revoir une prochaine fois.");
+  	    }
+  	    
   	}
 	static public Client identificationClient(ArrayList<Client> listeClient) {
 		Scanner clav = new Scanner(System.in);
@@ -90,6 +93,7 @@ public class Main {
 		System.out.println("âge :");
 		int age = Integer.parseInt(clav.nextLine());
 		Client client = new Client(listeClient.size(), adresse, email, telephone, nom ,prenom, age);
+		listeClient.add(client);
 	
 	   	return client;
 	}

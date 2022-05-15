@@ -36,7 +36,7 @@ public class Client {
     	return "Client #"+this.numero_client+", adresse : "+this.adresse+", email : "+this.mail+", téléphone :"+this.telephone+", nom : "+this.nom+", prénom : " +this.prenom + ", age : " + this.age;
     } 
     
-    public int choixDuScooter(Scooter[] listeScooter) {
+    public Scooter choixDuScooter(Scooter[] listeScooter) {
     	Scanner clav = new Scanner(System.in);
     	int numChoisi;
     	boolean arreterLeChoix = false;
@@ -51,11 +51,12 @@ public class Client {
     		
     			//Je regarde si le scooter est dans la BDD
     			if (listeScooter[a].numero == numChoisi) {
+    				Scooter scooterChoisi = listeScooter[a];
         		
     				//Est-ce que ce scooter est disponible?
-    				if (listeScooter[a].estDisponible) {
+    				if (scooterChoisi.estDisponible) {
     					System.out.println("Le Scooter #"+numChoisi+" est disponible");
-    					return numChoisi;
+    					return scooterChoisi;
     				}
     				else {
     					System.out.println("Ce Scooter est déjà loué, il sera discponible le :"/**+Location.date_fin*/);
@@ -76,6 +77,6 @@ public class Client {
         	}
 
     	}
-    	return -666;
+    	return null;
 }
 }

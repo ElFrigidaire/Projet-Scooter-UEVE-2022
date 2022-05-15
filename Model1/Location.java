@@ -24,28 +24,7 @@ public class Location {
     public String toString() {
     	return "Date début : "+this.date_debut+", date fin : "+this.date_fin+"\nScooter loué :\n"+this.scooterLoué;
     }
-
-    /**
-     * 
-     */
- 
-    /**
-     * 
-     */
-
-    /**
-     * 
-     */
-
-    /**
-     * 
-     */
     
-	public Scooter scoot;
-	public Retour induit;
-    /**
-     * 
-     */
-    public Client listLocation;
+    
 
 }

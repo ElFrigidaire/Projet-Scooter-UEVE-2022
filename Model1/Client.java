@@ -19,7 +19,8 @@ public class Client {
 	public String nom;
 	public String prenom;
 	public int age;
-	public Location location;
+	public ArrayList<Location> listeLocationsEnCours;
+	public ArrayList<Retour> listeRetours;
 	/**
      * Default constructor
      */
@@ -31,14 +32,15 @@ public class Client {
     	this.nom = nom;
     	this.prenom = prenom;
     	this.age = age;
-    	this.location = null;
+    	this.listeLocationsEnCours = new ArrayList<Location>();
+    	this.listeRetours = new ArrayList<Retour>();
     }
     
     public String toString() { 
     	return "Client #"+this.numero_client+", adresse : "+this.adresse+", email : "+this.mail+", téléphone :"+this.telephone+", nom : "+this.nom+", prénom : " +this.prenom + ", age : " + this.age;
     } 
     
-    public Scooter choixDuScooter(Scooter[] listeScooter) {
+    public Scooter choixDuScooterALouer(Scooter[] listeScooter) {
     	Scanner clav = new Scanner(System.in);
     	int numChoisi;
     	boolean arreterLeChoix = false;
@@ -82,4 +84,44 @@ public class Client {
     	}
     	return null;
 }
+    public int choixDuScooterARetourner() {
+    	Scanner clav = new Scanner(System.in);
+    	int numChoisi;
+    	boolean arreterLeChoix = false;
+    	while (!arreterLeChoix) {
+        	System.out.println("Veuillez entrer le numéro du Scooter à retourner");
+        	numChoisi = Integer.parseInt(clav.nextLine());
+        	boolean scooterTrouve = false;
+        	
+    		//Je parcours la liste de ,location du client 
+    		for (int a = 0; a < this.listeLocationsEnCours.size(); a++) {
+    			
+    			//Je regarde si le scooter est dans la liste des locations
+    			if (this.listeLocationsEnCours.get(a).scooterLoué.numero == numChoisi) {
+    				Scooter scooterChoisi = this.listeLocationsEnCours.get(a).scooterLoué;
+				//Est-ce que ce scooter a été loué?
+					if (scooterChoisi.estDisponible) {
+						System.out.println("Le Scooter #"+numChoisi+" n'a pas été loué");
+						scooterTrouve=true;
+						break;
+					}
+					else {
+						System.out.println("Merci de votre confiance. Nous espérons que la location s'est bien passée");
+						scooterTrouve = true;
+						return a;
+						}					
+    			}
+    		}
+    		if(scooterTrouve==false) {
+    			System.out.println("Vous n'avez pas loué ce scooter. Cependant, les scooters "); 
+    		}
+    		System.out.println("Voulez-vous entrer un autre numéro? [y]/n");
+        	String choix = clav.nextLine();
+        	System.out.println(choix);
+        	if (choix.equals("n")) {
+        		arreterLeChoix=true;
+        	}
+    	}
+    	return -666;
+    }
 }

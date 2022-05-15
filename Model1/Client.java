@@ -33,9 +33,6 @@ public class Client {
     	this.age=age;
     	this.park = park;
     }
-    public boolean hasReserved() {
-    	return park != null;
-    } 
 
     /**
      * 

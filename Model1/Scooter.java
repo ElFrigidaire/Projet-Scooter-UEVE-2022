@@ -14,13 +14,17 @@ public class Scooter {
     public boolean estDisponible;
 
     //constructeur
-	public Scooter(String modele, int numero, double kilometrage, Park park) {
+    public Scooter(String modele, int numero, double kilometrage, Park park) {
 		this.modele = modele;
 		this.numero = numero;
 		this.kilometrage = kilometrage;
 		this.park = park;
 		this.estDisponible = true;
 	}
+    public String toString() {
+    	return "Model : "+this.modele+", numéro : "+this.numero+", kilométrage : "+this.kilometrage+", park : "+this.park+", est Disponible "+this.estDisponible;
+    }
+    
 	/**
 	J'ai été con, j'ai codÃ© Ã§a comme si on avait pas d'interface graphique. Ã§a sert donc Ã  rien mais au moins on a le squelette/ un exemple
 	*/
@@ -37,22 +41,8 @@ public class Scooter {
 //		}
 //	}    
 
-    /**
-     * 
-     */
+    //public Modele listModele;
 
-    /**
-     * 
-     */
-
-    /**
-     * 
-     */
-    public Modele listModele;
-
-    /**
-     * 
-     */
-    public Set<Location> listLoc;
+    //public Set<Location> listLoc;
 
 }

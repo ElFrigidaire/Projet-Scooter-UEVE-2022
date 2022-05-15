@@ -19,6 +19,10 @@ public class Location {
     	this.date_fin= date_fin;
     	this.scooterLoué = scooterLoué;
     }
+    
+    public String toString() {
+    	return "Date début : "+this.date_debut+", date fin : "+this.date_fin+"\nScooter loué :\n"+this.scooterLoué;
+    }
 
     /**
      * 

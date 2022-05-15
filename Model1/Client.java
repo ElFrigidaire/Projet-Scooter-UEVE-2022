@@ -33,7 +33,10 @@ public class Client {
     	this.age=age;
     	this.park = park;
     }
-
+    
+    public String toString() { 
+    	return "Client #"+this.numero_client+", adresse : "+this.adresse+", email : "+this.mail+", téléphone :"+this.telephone+", nom : "+this.nom+", prénom : " +this.prenom + ", age : " + this.age+", park : "+this.park;
+    }
     /**
      * 
      */

@@ -8,18 +8,18 @@ import java.util.*;
  */
 public class Retour {
     public Date date;
-    public String modele;
+    public int numero_scooter;
 
     /**
      * Default constructor
      */
-    public Retour(Date date, String modele) {
+    public Retour(Date date, int numero_scooter) {
     	this.date = date;
-    	this.modele = modele;
+    	this.numero_scooter = numero_scooter;
     }
     
     public String toString() {
-    	return "Date de retour : " + this.date + ", modèle retourné : "+this.modele; 
+    	return "Date de retour : " + this.date + ", Scooter retourné : "+this.numero_scooter; 
     }
 
     /**

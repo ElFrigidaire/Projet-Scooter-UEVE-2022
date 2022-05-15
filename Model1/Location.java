@@ -18,6 +18,7 @@ public class Location {
     	this.date_debut = date_debut;
     	this.date_fin= date_fin;
     	this.scooterLoué = scooterLoué;
+    	this.scooterLoué.estDisponible = false;
     }
     
     public String toString() {

@@ -19,6 +19,7 @@ public class Client {
 	public String nom;
 	public String prenom;
 	public int age;
+	public Location location;
 	/**
      * Default constructor
      */
@@ -29,7 +30,8 @@ public class Client {
     	this.telephone = telephone;
     	this.nom = nom;
     	this.prenom = prenom;
-    	this.age=age;
+    	this.age = age;
+    	this.location = null;
     }
     
     public String toString() { 

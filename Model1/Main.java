@@ -4,6 +4,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.*;
+import java.text.SimpleDateFormat;
+
 
 public class Main {
 	
@@ -39,7 +41,7 @@ public class Main {
 		return listeClients;
 	}
 	
-  	public static void main(String[] args) {
+  	public static void main(String[] args)throws Exception {
   		//Initialisation de la BDD 
   		String[] listeNomsMarques= {"Yamaha", "Honda", "Piaggio", "Suzuki"};
   	    Scooter[] listeScooter = init_BDD_scoot(20, listeNomsMarques);
@@ -97,16 +99,23 @@ public class Main {
 	   	return client;
 	}
 	
-	public static void louerUnScooter(ArrayList<Client> listeClients, Scooter[] listeScooters) {
+	public static void louerUnScooter(ArrayList<Client> listeClients, Scooter[] listeScooters) throws Exception {
 		//Identification du client 
   	    Client clientEnCours = identificationClient(listeClients);
   	    
-  	  //Demande du numéro de scooter choisi
+  	  //Demande du scooter choisi
   	    Scooter scooterChoisi = clientEnCours.choixDuScooter(listeScooters);
   	    if (scooterChoisi == null) {
   	    	System.out.println("Nous regrettons ne pas avoir de quoi vous satisfaire, nous espérons vous revoir une prochaine fois.");
   	    	return ;
   	    }
+  	    
+  	    //Création de la location
+  	    Date date_debut = new SimpleDateFormat("dd/MM/yyyy").parse("18/01/2002");
+  	    Date date_fin = new SimpleDateFormat("dd/MM/yyyy").parse("20/01/2002");
+  	    Location location = new Location(date_debut, date_fin, scooterChoisi);
+  	    clientEnCours.location = location;
+  	    //parc.location=location;
 	}
 }    
 

@@ -19,10 +19,10 @@ public class Main {
 		return listeScooter;
 	}
 	
-	static public ArrayList<Client> init_BDD_clients(String[] nomsRues, String[] prenoms, String[] noms){
+	static public ArrayList<Client> init_BDD_clients(int numClients, String[] nomsRues, String[] prenoms, String[] noms){
 		//Je choisis une arrayList car le nombre de clients va changer au fur et à mesure que les clients s'inscrivent 
 	  	ArrayList<Client> listeClients = new ArrayList<Client>();
-		for (int i = 0; i<4;i++) {
+		for (int i = 0; i<numClients;i++) {
 	  		  Random random = new Random();
 	  		  int numRue = random.nextInt(90)+1;
 	  		  int idxRue = random.nextInt(nomsRues.length);
@@ -41,24 +41,22 @@ public class Main {
 	
   	public static void main(String[] args) {
   		//Initialisation de la BDD 
-  	  String[] listeNomsMarques= {"Yamaha", "Honda", "Piaggio", "Suzuki"};
-  	  Scooter[] listeScooter = init_BDD_scoot(20, listeNomsMarques);
+  		String[] listeNomsMarques= {"Yamaha", "Honda", "Piaggio", "Suzuki"};
+  	    Scooter[] listeScooter = init_BDD_scoot(20, listeNomsMarques);
   	  
-  	  String[] nomsRues = {"avenue de POO","rue de Cacahouète","boulevard du Frigidaire"};
-  	  String[] prenoms = {"Jonathan","Thomas","Plouf","Antoinette"};
-  	  String[] noms = {"Barneche", "Auzannet","Tarek", "Melliti"};
-  	  ArrayList<Client> listeClients = init_BDD_clients(nomsRues,prenoms,noms);	  
-  	    	 
-  	  //Demande du numéro de scooter choisi
-
+  	    String[] nomsRues = {"avenue de POO","rue de Cacahouète","boulevard du Frigidaire"};
+  	    String[] prenoms = {"Jonathan","Thomas","Plouf","Antoinette"};
+  	    String[] noms = {"Barneche", "Auzannet","Tarek", "Melliti"};
+  	    ArrayList<Client> listeClients = init_BDD_clients(4, nomsRues,prenoms,noms);	  
   	  
+  	    //Demande du numéro de scooter choisi
+	  
     	  
   	  //Identification du client 
  
   	  
   	  //Demande du numéro de scooter choisi
-  	  }
-
+  	}
 	static public Client identificationClient(ArrayList<Client> listeClient) {
 		Scanner clav = new Scanner(System.in);
 	    int numClient;

@@ -13,16 +13,30 @@ public class Main {
   	  Scooter[] listeScooter= new Scooter[20];
   	  for (int i=0; i<listeScooter.length;i++) {
   		  Random random = new Random();
-  		  int j=random.nextInt(listeNomsMarques.length + 0);
-  		  Park k= new Park(null ,"garage");
-  		  listeScooter[i] = new Scooter(listeNomsMarques[j], i, 0, k);
+  		  int idxMarque=random.nextInt(listeNomsMarques.length + 0);
+  		  double kilometrage = random.nextDouble(1000);
+  		  listeScooter[i] = new Scooter(listeNomsMarques[idxMarque], i, kilometrage);
   		  System.out.println(listeScooter[i].toString());
     }
   	  //Je choisis une arrayList car le nombre de clients va changer au fur et à mesure que les clients s'inscrivent 
   	  ArrayList<Client> listeClients = new ArrayList<Client>();
-  	 
+  	  String[] nomsRues = {"avenue de POO","rue de Cacahouète","boulevard du Frigidaire"};
+  	  String[] prenoms = {"Jonathan","Thomas","Plouf","Antoinette"};
+  	  String[] noms = {"Barneche", "Auzannet","Tarek", "Melliti"};
+  	  
+  	  
   	  for (int i = 0; i<4;i++) {
-  		  listeClients.add(new Client(i,"18 avenue de POO", "POO@POO.fr", "00000000", "Benoit", "Richard", 18));
+  		  Random random = new Random();
+  		  int numRue = random.nextInt(90)+1;
+  		  int idxRue = random.nextInt(nomsRues.length);
+  		  int idxPrenom = random.nextInt(prenoms.length);
+  		  int idxNom = random.nextInt(noms.length);
+  		  
+  		  String adresse = numRue+" "+nomsRues[idxRue];
+  		  String email = prenoms[idxPrenom]+"."+noms[idxNom]+"@POO.fr";
+  		  int age = random.nextInt(75)+18;
+  		  
+  		  listeClients.add(new Client(i, adresse, email, "00000000", noms[idxNom],prenoms[idxPrenom], age));
   		  System.out.println(listeClients.get(i).toString());
   }
   	 

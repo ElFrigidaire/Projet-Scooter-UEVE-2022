@@ -35,9 +35,9 @@ public class Client {
     	return "Client #"+this.numero_client+", adresse : "+this.adresse+", email : "+this.mail+", téléphone :"+this.telephone+", nom : "+this.nom+", prénom : " +this.prenom + ", age : " + this.age;
     }
     
-    public String choixDuScooter() {
-    	System.out.println
-    }
+//    public String choixDuScooter() {
+//    	System.out.println
+//    }
     
     //public Set<Location> listClient;
 

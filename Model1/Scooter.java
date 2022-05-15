@@ -10,19 +10,17 @@ public class Scooter {
 	public String modele;
 	public int numero;
 	public double kilometrage;
-    public Park park;
     public boolean estDisponible;
 
     //constructeur
-    public Scooter(String modele, int numero, double kilometrage, Park park) {
+    public Scooter(String modele, int numero, double kilometrage) {
 		this.modele = modele;
 		this.numero = numero;
 		this.kilometrage = kilometrage;
-		this.park = park;
 		this.estDisponible = true;
 	}
     public String toString() {
-    	return "Model : "+this.modele+", numéro : "+this.numero+", kilométrage : "+this.kilometrage+", park : "+this.park+", est Disponible "+this.estDisponible;
+    	return "Model : "+this.modele+", numéro : "+this.numero+", kilométrage : "+this.kilometrage+", est Disponible "+this.estDisponible;
     }
     
 	/**

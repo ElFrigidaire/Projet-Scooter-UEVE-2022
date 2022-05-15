@@ -12,7 +12,7 @@ public class Main {
   int[] listeScooter= new int[20];
   
   //ArrayList<String> listemarques = new ArrayList<>(Arrays.asList("Yamaha", "Honda", "Piaggio", "Suzuki"));
-  int[] listeMarques
+  int[] listeMarques= new int[4];
   ArrayList<int> listeclients = new ArrayList<>(Arrays.asList(20200411, 20200412, 20200413, 20200414));
   
 }

@@ -50,16 +50,9 @@ public class Main {
   	    ArrayList<Client> listeClients = init_BDD_clients(4, nomsRues,prenoms,noms);	  
   	  	  
     	  
-  	  //Identification du client 
-  	    Client clientEnCours = identificationClient(listeClients);
-  	    
-  	  //Demande du numéro de scooter choisi
-  	    Scooter scooterChoisi = clientEnCours.choixDuScooter(listeScooter);
-  	    if (scooterChoisi == null) {
-  	    	System.out.println("Nous regrettons ne pas avoir de quoi vous satisfaire, nous espérons vous revoir une prochaine fois.");
+
   	    }
   	    
-  	}
 	static public Client identificationClient(ArrayList<Client> listeClient) {
 		Scanner clav = new Scanner(System.in);
 	    int numClient;
@@ -96,6 +89,18 @@ public class Main {
 		listeClient.add(client);
 	
 	   	return client;
+	}
+	
+	public static void louerUnScooter(ArrayList<Client> listeClients, Scooter[] listeScooters) {
+		//Identification du client 
+  	    Client clientEnCours = identificationClient(listeClients);
+  	    
+  	  //Demande du numéro de scooter choisi
+  	    Scooter scooterChoisi = clientEnCours.choixDuScooter(listeScooters);
+  	    if (scooterChoisi == null) {
+  	    	System.out.println("Nous regrettons ne pas avoir de quoi vous satisfaire, nous espérons vous revoir une prochaine fois.");
+  	    	return ;
+  	    }
 	}
 }    
 

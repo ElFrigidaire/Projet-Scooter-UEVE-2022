@@ -1,6 +1,5 @@
 package Model1;
 
-import java.util.Random;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -49,16 +48,52 @@ public class Main {
   	  String[] prenoms = {"Jonathan","Thomas","Plouf","Antoinette"};
   	  String[] noms = {"Barneche", "Auzannet","Tarek", "Melliti"};
   	  ArrayList<Client> listeClients = init_BDD_clients(nomsRues,prenoms,noms);	  
-  	  
-  	 
+  	    	 
   	  //Demande du numéro de scooter choisi
+
   	  
-}
+    	  
+  	  //Identification du client 
+ 
+  	  
+  	  //Demande du numéro de scooter choisi
+  	  }
 
-}
-  
-
-//ArrayList<String> listemarques = new ArrayList<>(Arrays.asList("Yamaha", "Honda", "Piaggio", "Suzuki"));
-//ArrayList<int> listescooter =  new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20));
-  
+	static public Client identificationClient(ArrayList<Client> listeClient) {
+		Scanner clav = new Scanner(System.in);
+	    int numClient;
+	   	System.out.println("Veuillez entrer votre numéro de client");
+	   	numClient = Integer.parseInt(clav.nextLine());
+	   	
+	   	//Je Parcours la liste des clients pour vérifier si le client est présent
+	   	for (int a = 0; a < listeClient.size(); a++) {
+	   		
+	   		//Si il est dans la base de donnée
+	       	if (listeClient.get(a).numero_client == numClient) {
+	       		Client client = listeClient.get(a);
+	       		System.out.println("Bonjour "+client.prenom);
+	       		
+	       		return client;
+	       	}
+	   	}
+	   	
+	   	//Le client n'a pas été trouvé alors on le créé
+	   	System.out.println("Vous n'êtes pas client chez nous, veuillez donner vos informations pour vous inscrire: ");
+	    System.out.println("adresse :");
+	    String adresse = clav.nextLine();
+		System.out.println("adresse email :");
+		String email = clav.nextLine();
+		System.out.println("téléphone :");
+		String telephone = clav.nextLine();
+		System.out.println("nom :");       		
+		String nom = clav.nextLine();
+		System.out.println("prénom :");
+		String prenom = clav.nextLine();
+		System.out.println("âge :");
+		int age = Integer.parseInt(clav.nextLine());
+		Client client = new Client(listeClient.size(), adresse, email, telephone, nom ,prenom, age);
+	
+	   	return client;
+	}
+}    
 

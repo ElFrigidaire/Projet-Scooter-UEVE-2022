@@ -39,20 +39,43 @@ public class Client {
     public int choixDuScooter(Scooter[] listeScooter) {
     	Scanner clav = new Scanner(System.in);
     	int numChoisi;
-    	System.out.println("Veuillez entrer le numéro du Scooter choisi");
-    	numChoisi = Integer.parseInt(clav.nextLine());
-    	for (int a = 0; a < listeScooter.length; a++) {
-        	if (listeScooter[a].numero == numChoisi) {
-        		if (listeScooter[a].estDisponible) {
-        			System.out.println("Le Scooter #"+numChoisi+" est disponible");
+    	boolean arreterLeChoix = false;
+    	
+    	while (!arreterLeChoix) {
+        	System.out.println("Veuillez entrer le numéro du Scooter choisi");
+        	numChoisi = Integer.parseInt(clav.nextLine());
+        	boolean scooterTrouve = false;
+        	
+    		//Je parcours la liste des scooters
+    		for (int a = 0; a < listeScooter.length; a++) {
+    		
+    			//Je regarde si le scooter est dans la BDD
+    			if (listeScooter[a].numero == numChoisi) {
+        		
+    				//Est-ce que ce scooter est disponible?
+    				if (listeScooter[a].estDisponible) {
+    					System.out.println("Le Scooter #"+numChoisi+" est disponible");
+    					return numChoisi;
+    				}
+    				else {
+    					System.out.println("Ce Scooter est déjà loué, il sera discponible le :"/**+Location.date_fin*/);
+    					scooterTrouve = true;
+    					break;
+    					}
+        			}
         		}
-        		else {
-        		System.out.println("Ce Scooter est déjà loué, il sera discponible le :"/**+Location.date_fin*/);
-        		}
-        		return numChoisi;
-        		}
+    		
+    		if (!scooterTrouve) {
+    			System.out.println("Erreur, ce numéro n'est pas attribué");
+    		}
+    		
+    		System.out.println("Voulez-vous entrer un autre numéro? [y]/n");
+        	String choix = clav.nextLine();
+        	if (choix == "n") {
+        		arreterLeChoix=true;
         	}
-    	System.out.println("Erreur, ce numéro n'est pas attribué");
+
+    	}
     	return -666;
 }
 }

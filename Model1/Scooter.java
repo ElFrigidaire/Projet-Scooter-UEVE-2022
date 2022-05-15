@@ -20,7 +20,7 @@ public class Scooter {
 		this.estDisponible = true;
 	}
     public String toString() {
-    	return "Model : "+this.modele+", numéro : "+this.numero+", kilométrage : "+this.kilometrage+", est Disponible "+this.estDisponible;
+    	return "Scooter #"+this.numero+", Model : "+this.modele+", kilométrage : "+this.kilometrage+", est Disponible "+this.estDisponible;
     }
     
 	/**

@@ -55,6 +55,7 @@ public class Main {
   	    ArrayList<Client> listeClients = init_BDD_clients(4, nomsRues,prenoms,noms);	
   	    
   	    //Location d'un scooter
+  	    System.out.println("########### Location d'un scooter : ############");
   	    louerUnScooter(listeClients,listeScooter);
   	    
   	    //Debug
@@ -64,6 +65,23 @@ public class Main {
   	    for (int i=0;i<listeScooter.length;i++) {
 	    	System.out.println("Scooter : "+listeScooter[i].toString());
 	    }
+  	    
+  	    //Retour d'un scooter
+  	    System.out.println("########### Retour d'un scooter : ############");
+  	    retournerUnScooter(listeScooter, listeClients, 5);
+  	    
+  	    //Debug
+  	    for (int i=0;i<listeClients.size();i++) {
+  	    	System.out.println("Client : "+listeClients.get(i).toString());
+  	    }
+  	    for (int i=0;i<listeScooter.length;i++) {
+	    	System.out.println("Scooter : "+listeScooter[i].toString());
+	    }
+  	    
+  	    //Vérification de l'état d'un scooter
+  	    System.out.println("########### Vérification de l'état d'un scooter : ############");
+  	    verifierEtatScooter(listeScooter);
+
   	    }
   	    
 	static public Client identificationClient(ArrayList<Client> listeClient) {
@@ -133,7 +151,12 @@ public class Main {
     	  
   	    //Demande du scooter réservé
   	    int idxLocation = clientEnCours.choixDuScooterARetourner();
+  	    if (idxLocation == -666) {
+  	    	System.out.println("Nous regrettons ne pas avoir de quoi vous satisfaire, nous espérons vous revoir une prochaine fois.");
+  	    	return ;
+  	    }
   	    Scooter scooterChoisi = clientEnCours.listeLocationsEnCours.get(idxLocation).scooterLoué;
+
   	    
   	    //Création du retour
   	    Date date = new SimpleDateFormat("dd/MM/yyyy").parse("18/01/2002");
@@ -163,6 +186,7 @@ public class Main {
     				Scooter scooterChoisi = listeScooter[a];
         		
     				System.out.printf("Voici l'état de ce scooter : "+listeScooter[a]);
+    				scooterTrouve=true;
     				break;
     					}
         			}    		
@@ -170,9 +194,8 @@ public class Main {
     			System.out.println("Erreur, ce numéro n'est pas attribué");
     		}
     		
-    		System.out.println("Voulez-vous entrer un autre numéro? [y]/n");
+    		System.out.println("\n Voulez-vous entrer un autre numéro? [y]/n");
         	String choix = clav.nextLine();
-        	System.out.println(choix);
         	if (choix.equals("n")) {
         		arreterLeChoix=true;
         	}

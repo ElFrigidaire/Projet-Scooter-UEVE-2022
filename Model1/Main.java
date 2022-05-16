@@ -12,16 +12,13 @@ public class Main {
 	
 	static public Scooter[] init_BDD_scoot(int numScoot, String[] listeNomsMarques) {
 		Scooter[] listeScooter= new Scooter[numScoot];
-		double kilometrageMoyen=0;
 		for (int i=0; i<listeScooter.length;i++) {
 		  Random random = new Random();
 		  int idxMarque=random.nextInt(listeNomsMarques.length + 0);
 		  double kilometrage = random.nextDouble(1000);
-		  kilometrageMoyen+=kilometrage;
 		  listeScooter[i] = new Scooter(listeNomsMarques[idxMarque], i, kilometrage);
 		  System.out.println(listeScooter[i].toString());
 		  }
-		kilometrageMoyen=kilometrageMoyen/listeScooter.length;
 		return listeScooter;
 	}
 	
@@ -54,11 +51,11 @@ public class Main {
   	    String[] prenoms = {"Jonathan","Thomas","Plouf","Antoinette"};
   	    String[] noms = {"Barneche", "Auzannet","Tarek", "Melliti"};
   	    ArrayList<Client> listeClients = init_BDD_clients(4, nomsRues,prenoms,noms);	
-  	    
+  	    ArrayList<Retour> listeRetours = new ArrayList<Retour>();
   	    ArrayList<Location> listeLocations = new ArrayList<Location>();
   	    
   	    //Création du parc
-  	    Parc monParc= new Parc(listeScooter, listeClients, listeLocations);
+  	    Parc monParc= new Parc(listeScooter, listeClients, listeLocations, listeRetours);
   	    
 		Scanner clav = new Scanner(System.in);
 		System.out.println("\n Veuillez choisir une option du menu : \n 1 : Louer un Scooter \n 2 : Retour d'un scooter \n 3 : État d'un scooter \n 4 : Affichage de l'état du parc des scooters \n 5: Saisie du parc des scooters \n [6] : Quitter le programme");
@@ -67,7 +64,7 @@ public class Main {
 			
 	  	    //Location d'un scooter
 	  	    System.out.println("########### Location d'un scooter : ###########");
-	  	    louerUnScooter(monParc.listeClients,monParc.listeScooters);
+	  	    louerUnScooter(monParc);
 	  	    
 	  	    //Debug
 	  	    monParc.debug(); 	
@@ -76,7 +73,7 @@ public class Main {
 			
 	  	    //Retour d'un scooter
 	  	    System.out.println("########### Retour d'un scooter : ###########");
-	  	    retournerUnScooter(monParc.listeScooters, monParc.listeClients, 5);
+	  	    retournerUnScooter(monParc);
 	  	    
 	  	    //Debug
 	  	    monParc.debug();
@@ -93,8 +90,8 @@ public class Main {
 	  	    monParc.affichageEtatParcScooter();
 		}
 		else if (choixMenu==5 ) {
-			//afficherResumeParcScooters(monParc, nombreScootersLocation, scooterChoisi, kilometrageMoyen, choixDuScooterALouer);
-		}
+			monParc.afficherResumeParcScooters();
+			}
 		else {
 //	        try {
 //	        	  
@@ -169,13 +166,12 @@ public class Main {
 	   	return client;
 	}
 	
-	public static void louerUnScooter(ArrayList<Client> listeClients, Scooter[] listeScooters) throws Exception {
-		int nombreScootersLocation=0;
+	public static void louerUnScooter(Parc monParc) throws Exception {
 		//Identification du client 
-  	    Client clientEnCours = identificationClient(listeClients);
+  	    Client clientEnCours = identificationClient(monParc.listeClients);
   	    
   	  //Demande du scooter choisi
-  	    Scooter scooterChoisi = clientEnCours.choixDuScooterALouer(listeScooters);
+  	    Scooter scooterChoisi = clientEnCours.choixDuScooterALouer(monParc.listeScooters);
   	    if (scooterChoisi == null) {
   	    	System.out.println("Nous regrettons ne pas avoir de quoi vous satisfaire, nous espérons vous revoir une prochaine fois.");
   	    	return ;
@@ -186,14 +182,13 @@ public class Main {
   	    Date date_fin = new SimpleDateFormat("dd/MM/yyyy").parse("20/01/2002");
   	    Location location = new Location(date_debut, date_fin, scooterChoisi);
   	    clientEnCours.listeLocationsEnCours.add(location);
-		nombreScootersLocation+=1;
-  	    //parc.location=location;
+  	    monParc.listeLocations.add(location);
 	}
 	
-	public static void retournerUnScooter(Scooter[] listeScooters, ArrayList<Client> listeClient, int nombreScootersLocation)throws Exception {
+	public static void retournerUnScooter(Parc monParc)throws Exception {
 		
 		//Identification du client 
-  	    Client clientEnCours = identificationClient(listeClient);
+  	    Client clientEnCours = identificationClient(monParc.listeClients);
     	  
   	    //Demande du scooter réservé
   	    int idxLocation = clientEnCours.choixDuScooterARetourner();
@@ -210,8 +205,7 @@ public class Main {
   	    retour.demanderKilometrage();
   	    Location location = clientEnCours.listeLocationsEnCours.remove(idxLocation);
   	    clientEnCours.listeRetours.add(retour);
-  	    nombreScootersLocation-=1;
-
+  	    monParc.listeRetours.add(retour);
 	}
 	
 	public static Scooter verifierEtatScooter(Scooter[] listeScooter) {
@@ -254,12 +248,6 @@ public class Main {
 	}
 	
 	
-	public static void afficherResumeParcScooters(Parc monParc, int nombreScootersLocation, Scooter scooterChoisi, double kilometrageMoyen, Scooter choixDuScooterALouer) {
-		int scootersEnLocation=scooterChoisi.choixDuScooterALouer;
-		System.out.printf("Il y a "+monParc.listeScooters.length+"scooters");
-		System.out.printf("Il y a "+nombreScootersLocation+"scooters en location actuellement :"+scootersEnLocation);
-		System.out.printf("Le kilométrage moyen de l'ensemble des scooters est : "+kilometrageMoyen);
-	}
 	
 	public static void quitterProgramme() {
 		

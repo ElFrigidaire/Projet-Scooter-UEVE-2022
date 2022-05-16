@@ -44,6 +44,7 @@ public class Client {
     	Scanner clav = new Scanner(System.in);
     	int numChoisi;
     	boolean arreterLeChoix = false;
+    	int nombreScootersLocation=0;
     	
     	while (!arreterLeChoix) {
         	System.out.println("Veuillez entrer le numéro du Scooter choisi");
@@ -60,6 +61,7 @@ public class Client {
     				//Est-ce que ce scooter est disponible?
     				if (scooterChoisi.estDisponible) {
     					System.out.println("Le Scooter #"+numChoisi+" est disponible");
+    					nombreScootersLocation+=1;
     					return scooterChoisi;
     				}
     				else {

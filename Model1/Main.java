@@ -11,13 +11,16 @@ public class Main {
 	
 	static public Scooter[] init_BDD_scoot(int numScoot, String[] listeNomsMarques) {
 		Scooter[] listeScooter= new Scooter[numScoot];
+		double kilometrageMoyen=0;
 		for (int i=0; i<listeScooter.length;i++) {
 		  Random random = new Random();
 		  int idxMarque=random.nextInt(listeNomsMarques.length + 0);
 		  double kilometrage = random.nextDouble(1000);
+		  kilometrageMoyen+=kilometrage;
 		  listeScooter[i] = new Scooter(listeNomsMarques[idxMarque], i, kilometrage);
 		  System.out.println(listeScooter[i].toString());
 		  }
+		kilometrageMoyen=kilometrageMoyen/listeScooter.length;
 		return listeScooter;
 	}
 	
@@ -103,6 +106,7 @@ public class Main {
 	}
 	
 	public static void louerUnScooter(ArrayList<Client> listeClients, Scooter[] listeScooters) throws Exception {
+		int nombreScootersLocation=0;
 		//Identification du client 
   	    Client clientEnCours = identificationClient(listeClients);
   	    
@@ -118,10 +122,11 @@ public class Main {
   	    Date date_fin = new SimpleDateFormat("dd/MM/yyyy").parse("20/01/2002");
   	    Location location = new Location(date_debut, date_fin, scooterChoisi);
   	    clientEnCours.listeLocationsEnCours.add(location);
+		nombreScootersLocation+=1;
   	    //parc.location=location;
 	}
 	
-	public static void retournerUnScooter(Scooter[] listeScooters, ArrayList<Client> listeClient)throws Exception {
+	public static void retournerUnScooter(Scooter[] listeScooters, ArrayList<Client> listeClient, int nombreScootersLocation)throws Exception {
 		
 		//Identification du client 
   	    Client clientEnCours = identificationClient(listeClient);
@@ -136,6 +141,7 @@ public class Main {
   	    retour.demanderKilometrage();
   	    Location location = clientEnCours.listeLocationsEnCours.remove(idxLocation);
   	    clientEnCours.listeRetours.add(retour);
+  	    nombreScootersLocation-=1;
 
 	}
 	
@@ -183,10 +189,11 @@ public class Main {
 		
 	}
 	
-	public static void afficherResumeParcScooters(Scooter[] listeScooter) {
+	public static void afficherResumeParcScooters(Scooter[] listeScooter, int nombreScootersLocation, Scooter scooterChoisi, double kilometrageMoyen) {
+		int scootersEnLocation=scooterChoisi.choixDuScooterALouer();
 		System.out.printf("Il y a "+listeScooter.length+"scooters");
-		System.out.printf("Il y a "+listeScooter.length+"scooters");
-
+		System.out.printf("Il y a "+nombreScootersLocation+"scooters en location actuellement :"+scootersEnLocation);
+		System.out.printf("Le kilométrage moyen de l'ensemble des scooters est : "+kilometrageMoyen);
 	}
 	
 	public static void quitterProgramme() {

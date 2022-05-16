@@ -139,13 +139,54 @@ public class Main {
 
 	}
 	
-	public static void verifierEtatScooter() {
+	public static Scooter verifierEtatScooter(Scooter[] listeScooter) {
+		Scanner clav = new Scanner(System.in);
+		int numChoisi;
+		boolean arreterLeChoix = false;
+    	
+    	while (!arreterLeChoix) {
+    		System.out.println("De quel Scooter voulez-vous vérifier l'état? ");
+    		numChoisi = Integer.parseInt(clav.nextLine());
+    		boolean scooterTrouve = false;
+        	
+    		//Je parcours la liste des scooters
+    		for (int a = 0; a < listeScooter.length; a++) {
+    		
+    			//Je regarde si le scooter est dans la BDD
+    			if (listeScooter[a].numero == numChoisi) {
+    				Scooter scooterChoisi = listeScooter[a];
+        		
+    				System.out.printf("Voici l'état de ce scooter : "+listeScooter[a]);
+    				break;
+    					}
+        			}    		
+    		if (!scooterTrouve) {
+    			System.out.println("Erreur, ce numéro n'est pas attribué");
+    		}
+    		
+    		System.out.println("Voulez-vous entrer un autre numéro? [y]/n");
+        	String choix = clav.nextLine();
+        	System.out.println(choix);
+        	if (choix.equals("n")) {
+        		arreterLeChoix=true;
+        	}
+
+    	}
+    	return null;
+
+
+		
 	}
 	
-	public static void affichageEtatParcScooter() {
+	public static void affichageEtatParcScooter(Scooter[] listeScooter) {
+		System.out.printf(null, listeScooter);
+		
 	}
 	
-	public static void afficherResumeParcScooters() {
+	public static void afficherResumeParcScooters(Scooter[] listeScooter) {
+		System.out.printf("Il y a "+listeScooter.length+"scooters");
+		System.out.printf("Il y a "+listeScooter.length+"scooters");
+
 	}
 	
 	public static void quitterProgramme() {

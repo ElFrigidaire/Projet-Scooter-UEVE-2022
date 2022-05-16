@@ -54,33 +54,31 @@ public class Main {
   	    String[] noms = {"Barneche", "Auzannet","Tarek", "Melliti"};
   	    ArrayList<Client> listeClients = init_BDD_clients(4, nomsRues,prenoms,noms);	
   	    
+  	    ArrayList<Location> listeLocations = new ArrayList<Location>();
+  	    
+  	    //Création du parc
+  	    Parc monParc= new Parc(listeScooter, listeClients, listeLocations);
+  	    
   	    //Location d'un scooter
   	    System.out.println("########### Location d'un scooter : ############");
-  	    louerUnScooter(listeClients,listeScooter);
+  	    louerUnScooter(monParc.listeClients,monParc.listeScooters);
   	    
   	    //Debug
-  	    for (int i=0;i<listeClients.size();i++) {
-  	    	System.out.println("Client : "+listeClients.get(i).toString());
-  	    }
-  	    for (int i=0;i<listeScooter.length;i++) {
-	    	System.out.println("Scooter : "+listeScooter[i].toString());
-	    }
+  	    monParc.debug(); 	
   	    
   	    //Retour d'un scooter
   	    System.out.println("########### Retour d'un scooter : ############");
-  	    retournerUnScooter(listeScooter, listeClients, 5);
+  	    retournerUnScooter(monParc.listeScooters, monParc.listeClients, 5);
   	    
   	    //Debug
-  	    for (int i=0;i<listeClients.size();i++) {
-  	    	System.out.println("Client : "+listeClients.get(i).toString());
-  	    }
-  	    for (int i=0;i<listeScooter.length;i++) {
-	    	System.out.println("Scooter : "+listeScooter[i].toString());
-	    }
+  	    monParc.debug();
+  	    
   	    
   	    //Vérification de l'état d'un scooter
   	    System.out.println("########### Vérification de l'état d'un scooter : ############");
-  	    verifierEtatScooter(listeScooter);
+  	    verifierEtatScooter(monParc.listeScooters);
+  	    
+  	    monParc.affichageEtatParcScooter();
 
   	    }
   	    
@@ -207,10 +205,6 @@ public class Main {
 		
 	}
 	
-	public static void affichageEtatParcScooter(Scooter[] listeScooter) {
-		System.out.printf(null, listeScooter);
-		
-	}
 	
 	public static void afficherResumeParcScooters(Scooter[] listeScooter, int nombreScootersLocation, Scooter scooterChoisi, double kilometrageMoyen) {
 		int scootersEnLocation=scooterChoisi.choixDuScooterALouer();

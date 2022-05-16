@@ -57,70 +57,10 @@ public class Main {
   	    //Création du parc
   	    Parc monParc= new Parc(listeScooter, listeClients, listeLocations, listeRetours);
   	    
-		Scanner clav = new Scanner(System.in);
-		System.out.println("\n Veuillez choisir une option du menu : \n 1 : Louer un Scooter \n 2 : Retour d'un scooter \n 3 : État d'un scooter \n 4 : Affichage de l'état du parc des scooters \n 5: Saisie du parc des scooters \n [6] : Quitter le programme");
-	   	int choixMenu = Integer.parseInt(clav.nextLine());
-		if(choixMenu==1) {
-			
-	  	    //Location d'un scooter
-	  	    System.out.println("########### Location d'un scooter : ###########");
-	  	    louerUnScooter(monParc);
-	  	    
-	  	    //Debug
-	  	    monParc.debug(); 	
-		}
-		else if (choixMenu==2) {
-			
-	  	    //Retour d'un scooter
-	  	    System.out.println("########### Retour d'un scooter : ###########");
-	  	    retournerUnScooter(monParc);
-	  	    
-	  	    //Debug
-	  	    monParc.debug();
-		}
-		else if (choixMenu==3) {
-			
-			//Vérification de l'état d'un scooter
-	  	    System.out.println("########### Vérification de l'état d'un scooter : ###########");
-	  	    verifierEtatScooter(monParc.listeScooters);
-		}
-		else if (choixMenu==4) {
-			
-			//Affichage de l'état du parc des scooters
-	  	    monParc.affichageEtatParcScooter();
-		}
-		else if (choixMenu==5 ) {
-			monParc.afficherResumeParcScooters();
-			}
-		else {
-//	        try {
-//	        	  
-//	            // Recevoir le fichier 
-//	            File f = new File("D:\\BDD.txt");
-//	  
-//	            // Créer un nouveau fichier
-//	            // Vérifier s'il n'existe pas
-//	            if (f.createNewFile())
-//	                System.out.println("File created");
-//	            else
-//	                System.out.println("File already exists");
-//	        } 
-//	        try(FileWriter fw = new FileWriter(monFichier.txt, true);
-//	        		BufferedWriter bw = new BufferedWriter(fw);
-//	        		PrintWriter out = new PrintWriter(bw))
-//	        		{
-//	        		 out.println("");
-//	        		 ...
-//	        		 out.println("");
-//	        		}
-//	        		catch (IOException e)
-//	        		{
-//	        		 //Gestion des exceptions en cas de problème d'accès au fichier
-//	        		}
-//	        quitterProgramme();
-
-	        }
-		}
+  	    //Création et affichage du menu
+  	    menu(monParc);
+  	}
+  	    
 
  
   	      	    
@@ -191,19 +131,22 @@ public class Main {
   	    Client clientEnCours = identificationClient(monParc.listeClients);
     	  
   	    //Demande du scooter réservé
-  	    int idxLocation = clientEnCours.choixDuScooterARetourner();
-  	    if (idxLocation == -666) {
+  	    int idxLocationClient = clientEnCours.choixDuScooterARetourner();
+  	    if (idxLocationClient == -666) {
   	    	System.out.println("Nous regrettons ne pas avoir de quoi vous satisfaire, nous espérons vous revoir une prochaine fois.");
   	    	return ;
   	    }
-  	    Scooter scooterChoisi = clientEnCours.listeLocationsEnCours.get(idxLocation).scooterLoué;
+  	    Scooter scooterChoisi = clientEnCours.listeLocationsEnCours.get(idxLocationClient).scooterLoué;
 
   	    
   	    //Création du retour
   	    Date date = new SimpleDateFormat("dd/MM/yyyy").parse("18/01/2002");
   	    Retour retour = new Retour(date, scooterChoisi);
   	    retour.demanderKilometrage();
-  	    Location location = clientEnCours.listeLocationsEnCours.remove(idxLocation);
+  	    
+  	    //Mise à jour des liste de location des clients
+  	    Location location = clientEnCours.listeLocationsEnCours.remove(idxLocationClient);
+  	    Location location2 = monParc.listeLocations.remove(monParc.indexLocationParc(scooterChoisi.numero));
   	    clientEnCours.listeRetours.add(retour);
   	    monParc.listeRetours.add(retour);
 	}
@@ -247,7 +190,88 @@ public class Main {
 		
 	}
 	
-	
+	public static void menu(Parc monParc)throws Exception {
+		Scanner clav = new Scanner(System.in);
+		System.out.println("\n Veuillez choisir une option du menu : \n 1 : Louer un Scooter \n 2 : Retour d'un scooter \n 3 : État d'un scooter \n 4 : Affichage de l'état du parc des scooters \n 5: Saisie du parc des scooters \n [6] : Quitter le programme");
+	   	int choixMenu = Integer.parseInt(clav.nextLine());
+		if(choixMenu==1) {
+			
+	  	    //Location d'un scooter
+	  	    System.out.println("########### Location d'un scooter : ###########");
+	  	    louerUnScooter(monParc);
+	  	    
+	  	    //Debug
+	  	    monParc.debug();
+	  	    
+	  	    //On retourne au menu de démarrage
+	  	    menu(monParc);
+	  	    
+		}
+		else if (choixMenu==2) {
+			
+	  	    //Retour d'un scooter
+	  	    System.out.println("########### Retour d'un scooter : ###########");
+	  	    retournerUnScooter(monParc);
+	  	    
+	  	    //Debug
+	  	    monParc.debug();
+	  	    
+	  	    //On retourne au menu de démarrage
+	  	    menu(monParc);
+		}
+		else if (choixMenu==3) {
+			
+			//Vérification de l'état d'un scooter
+	  	    System.out.println("########### Vérification de l'état d'un scooter : ###########");
+	  	    verifierEtatScooter(monParc.listeScooters);
+	  	    
+	  	    //On retourne au menu de démarrage
+	  	    menu(monParc);
+		}
+		else if (choixMenu==4) {
+			
+			//Affichage de l'état du parc des scooters
+	  	    monParc.affichageEtatParcScooter();
+	  	    
+	  	    
+	  	    //On retourne au menu de démarrage
+	  	    menu(monParc);
+		}
+		else if (choixMenu==5 ) {
+			monParc.afficherResumeParcScooters();
+	  	    
+	  	    //On retourne au menu de démarrage
+	  	    menu(monParc);
+			}
+		else {
+//	        try {
+//	        	  
+//	            // Recevoir le fichier 
+//	            File f = new File("D:\\BDD.txt");
+//	  
+//	            // Créer un nouveau fichier
+//	            // Vérifier s'il n'existe pas
+//	            if (f.createNewFile())
+//	                System.out.println("File created");
+//	            else
+//	                System.out.println("File already exists");
+//	        } 
+//	        try(FileWriter fw = new FileWriter(monFichier.txt, true);
+//	        		BufferedWriter bw = new BufferedWriter(fw);
+//	        		PrintWriter out = new PrintWriter(bw))
+//	        		{
+//	        		 out.println("");
+//	        		 ...
+//	        		 out.println("");
+//	        		}
+//	        		catch (IOException e)
+//	        		{
+//	        		 //Gestion des exceptions en cas de problème d'accès au fichier
+//	        		}
+//	        quitterProgramme();
+
+	        }
+		}
 	
 	public static void quitterProgramme() {
 		

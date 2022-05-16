@@ -77,9 +77,6 @@ public class Parc {
 	}
 
 	
-	
-	
-	
 	public void afficherResumeParcScooters() {
 		System.out.println("Voici le résumé du parc de scooters : ");
 		System.out.println("Il y a "+this.listeScooters.length+" scooters au total.");
@@ -88,6 +85,18 @@ public class Parc {
 		System.out.println("Il y a "+recupererNombreScooterDisponible()+" Scooters disponibles.");
 		System.out.println("Les numéros d'identification des scooters disponibles sont : "+numeroScooterDisponible());
 		System.out.println("Le kilométrage moyen de l'ensemble des scooters est : "+calculKilometrageMoyen()+" km");
+	}
+	
+	public int indexLocationParc(int numero) {
+		int indexLocationDuParc=0;
+		for(int i=0;i<this.listeLocations.size();i++) {
+			if(this.listeLocations.get(i).scooterLoué.numero==numero) {
+				indexLocationDuParc=i;
+				break;
+			}
+		}
+		
+		return indexLocationDuParc;
 	}
 
 

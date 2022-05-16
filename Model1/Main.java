@@ -17,7 +17,6 @@ public class Main {
 		  int idxMarque=random.nextInt(listeNomsMarques.length + 0);
 		  double kilometrage = random.nextDouble(1000);
 		  listeScooter[i] = new Scooter(listeNomsMarques[idxMarque], i, kilometrage);
-		  System.out.println(listeScooter[i].toString());
 		  }
 		return listeScooter;
 	}
@@ -37,7 +36,6 @@ public class Main {
 	  		  int age = random.nextInt(75)+18;
 	  		  
 	  		  listeClients.add(new Client(i, adresse, email, "00000000", noms[idxNom],prenoms[idxPrenom], age));
-	  		  System.out.println(listeClients.get(i).toString());
 	  		  }
 		return listeClients;
 	}
@@ -200,9 +198,6 @@ public class Main {
 	  	    System.out.println("########### Location d'un scooter : ###########");
 	  	    louerUnScooter(monParc);
 	  	    
-	  	    //Debug
-	  	    monParc.debug();
-	  	    
 	  	    //On retourne au menu de démarrage
 	  	    menu(monParc);
 	  	    
@@ -212,9 +207,6 @@ public class Main {
 	  	    //Retour d'un scooter
 	  	    System.out.println("########### Retour d'un scooter : ###########");
 	  	    retournerUnScooter(monParc);
-	  	    
-	  	    //Debug
-	  	    monParc.debug();
 	  	    
 	  	    //On retourne au menu de démarrage
 	  	    menu(monParc);

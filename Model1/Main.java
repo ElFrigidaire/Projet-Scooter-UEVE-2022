@@ -78,7 +78,7 @@ public class Main {
   	    System.out.println("########### Vérification de l'état d'un scooter : ############");
   	    verifierEtatScooter(monParc.listeScooters);
   	    
-  	    monParc.affichageEtatParcScooter();
+  	    monParc.affichageEtatParcScooter(listeScooters);
 
   	    }
   	    
@@ -206,9 +206,9 @@ public class Main {
 	}
 	
 	
-	public static void afficherResumeParcScooters(Scooter[] listeScooter, int nombreScootersLocation, Scooter scooterChoisi, double kilometrageMoyen) {
-		int scootersEnLocation=scooterChoisi.choixDuScooterALouer();
-		System.out.printf("Il y a "+listeScooter.length+"scooters");
+	public static void afficherResumeParcScooters(Parc monParc, int nombreScootersLocation, Scooter scooterChoisi, double kilometrageMoyen, Scooter choixDuScooterALouer) {
+		int scootersEnLocation=scooterChoisi.choixDuScooterALouer;
+		System.out.printf("Il y a "+monParc.listeScooters.length+"scooters");
 		System.out.printf("Il y a "+nombreScootersLocation+"scooters en location actuellement :"+scootersEnLocation);
 		System.out.printf("Le kilométrage moyen de l'ensemble des scooters est : "+kilometrageMoyen);
 	}

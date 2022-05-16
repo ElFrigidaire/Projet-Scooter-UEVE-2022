@@ -19,5 +19,20 @@ public class Parc {
     	this.listeClients = listeClients;
     	this.listeLocations = listeLocations;
     }
+    
+    
+    public void debug() {
+  	    for (int i=0;i<this.listeClients.size();i++) {
+  	    	System.out.println("Client : "+this.listeClients.get(i).toString());
+  	    }
+  	    for (int i=0;i<this.listeScooters.length;i++) {
+	    	System.out.println("Scooter : "+this.listeScooters[i].toString());
+	    }
+    }
+    
+	public void affichageEtatParcScooter(Scooter[] listeScooters) {
+		System.out.printf(null, this.listeScooters);
+	}
+
 
 }

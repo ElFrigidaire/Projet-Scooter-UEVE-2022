@@ -1,10 +1,11 @@
 package Model1;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.util.*;
 import java.text.SimpleDateFormat;
+import java.nio.file.*;
+import java.nio.charset.*;
+
 
 
 public class Main {
@@ -89,20 +90,45 @@ public class Main {
 		else if (choixMenu==4) {
 			
 			//Affichage de l'état du parc des scooters
-	  	    monParc.affichageEtatParcScooter(listeScooters);
+	  	    monParc.affichageEtatParcScooter();
 		}
 		else if (choixMenu==5 ) {
-			afficherResumeParcScooters(monParc, nombreScootersLocation, scooterChoisi, kilometrageMoyen, choixDuScooterALouer);
+			//afficherResumeParcScooters(monParc, nombreScootersLocation, scooterChoisi, kilometrageMoyen, choixDuScooterALouer);
 		}
 		else {
-			quitterProgramme();
+//	        try {
+//	        	  
+//	            // Recevoir le fichier 
+//	            File f = new File("D:\\BDD.txt");
+//	  
+//	            // Créer un nouveau fichier
+//	            // Vérifier s'il n'existe pas
+//	            if (f.createNewFile())
+//	                System.out.println("File created");
+//	            else
+//	                System.out.println("File already exists");
+//	        } 
+//	        try(FileWriter fw = new FileWriter(monFichier.txt, true);
+//	        		BufferedWriter bw = new BufferedWriter(fw);
+//	        		PrintWriter out = new PrintWriter(bw))
+//	        		{
+//	        		 out.println("");
+//	        		 ...
+//	        		 out.println("");
+//	        		}
+//	        		catch (IOException e)
+//	        		{
+//	        		 //Gestion des exceptions en cas de problème d'accès au fichier
+//	        		}
+//	        quitterProgramme();
+
+	        }
 		}
 
-  	    
-  	    
+ 
   	      	    
 
-  	    }
+
   	    
 	static public Client identificationClient(ArrayList<Client> listeClient) {
 		Scanner clav = new Scanner(System.in);

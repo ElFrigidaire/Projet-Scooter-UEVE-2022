@@ -30,8 +30,12 @@ public class Parc {
 	    }
     }
     
-	public void affichageEtatParcScooter(Scooter[] listeScooters) {
-		System.out.printf(null, this.listeScooters);
+	public void affichageEtatParcScooter() {
+		System.out.printf("Voici l'état du parc de scooters : ");
+  	    for (int i=0;i<this.listeScooters.length;i++) {
+	    	System.out.printf("\n Scooter : "+this.listeScooters[i]);
+	    }
+
 	}
 
 

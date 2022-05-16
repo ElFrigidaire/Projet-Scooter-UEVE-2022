@@ -59,26 +59,48 @@ public class Main {
   	    //Création du parc
   	    Parc monParc= new Parc(listeScooter, listeClients, listeLocations);
   	    
-  	    //Location d'un scooter
-  	    System.out.println("########### Location d'un scooter : ############");
-  	    louerUnScooter(monParc.listeClients,monParc.listeScooters);
+		Scanner clav = new Scanner(System.in);
+		System.out.println("\n Veuillez choisir une option du menu : \n 1 : Louer un Scooter \n 2 : Retour d'un scooter \n 3 : État d'un scooter \n 4 : Affichage de l'état du parc des scooters \n 5: Saisie du parc des scooters \n [6] : Quitter le programme");
+	   	int choixMenu = Integer.parseInt(clav.nextLine());
+		if(choixMenu==1) {
+			
+	  	    //Location d'un scooter
+	  	    System.out.println("########### Location d'un scooter : ###########");
+	  	    louerUnScooter(monParc.listeClients,monParc.listeScooters);
+	  	    
+	  	    //Debug
+	  	    monParc.debug(); 	
+		}
+		else if (choixMenu==2) {
+			
+	  	    //Retour d'un scooter
+	  	    System.out.println("########### Retour d'un scooter : ###########");
+	  	    retournerUnScooter(monParc.listeScooters, monParc.listeClients, 5);
+	  	    
+	  	    //Debug
+	  	    monParc.debug();
+		}
+		else if (choixMenu==3) {
+			
+			//Vérification de l'état d'un scooter
+	  	    System.out.println("########### Vérification de l'état d'un scooter : ###########");
+	  	    verifierEtatScooter(monParc.listeScooters);
+		}
+		else if (choixMenu==4) {
+			
+			//Affichage de l'état du parc des scooters
+	  	    monParc.affichageEtatParcScooter(listeScooters);
+		}
+		else if (choixMenu==5 ) {
+			afficherResumeParcScooters(monParc, nombreScootersLocation, scooterChoisi, kilometrageMoyen, choixDuScooterALouer);
+		}
+		else {
+			quitterProgramme();
+		}
+
   	    
-  	    //Debug
-  	    monParc.debug(); 	
   	    
-  	    //Retour d'un scooter
-  	    System.out.println("########### Retour d'un scooter : ############");
-  	    retournerUnScooter(monParc.listeScooters, monParc.listeClients, 5);
-  	    
-  	    //Debug
-  	    monParc.debug();
-  	    
-  	    
-  	    //Vérification de l'état d'un scooter
-  	    System.out.println("########### Vérification de l'état d'un scooter : ############");
-  	    verifierEtatScooter(monParc.listeScooters);
-  	    
-  	    monParc.affichageEtatParcScooter(listeScooters);
+  	      	    
 
   	    }
   	    

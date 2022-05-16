@@ -236,31 +236,36 @@ public class Main {
 	  	    menu(monParc);
 			}
 		else {
-//	        try {
-//	        	  
-//	            // Recevoir le fichier 
-//	            File f = new File("D:\\BDD.txt");
-//	  
-//	            // Créer un nouveau fichier
-//	            // Vérifier s'il n'existe pas
-//	            if (f.createNewFile())
-//	                System.out.println("File created");
-//	            else
-//	                System.out.println("File already exists");
-//	        } 
-//	        try(FileWriter fw = new FileWriter(monFichier.txt, true);
-//	        		BufferedWriter bw = new BufferedWriter(fw);
-//	        		PrintWriter out = new PrintWriter(bw))
-//	        		{
-//	        		 out.println("");
-//	        		 ...
-//	        		 out.println("");
-//	        		}
-//	        		catch (IOException e)
-//	        		{
-//	        		 //Gestion des exceptions en cas de problème d'accès au fichier
-//	        		}
-//	        quitterProgramme();
+	        try {
+	        	  
+	            // Recevoir le fichier 
+	            File f = new File("D:\\BDD.txt");
+	  
+	            // Créer un nouveau fichier
+	            // Vérifier s'il n'existe pas
+	            if (f.createNewFile())
+	                System.out.println("File created");
+	            else
+	                System.out.println("File already exists");
+	        }
+    		catch (IOException e)
+    		{
+    		 //Gestion des exceptions en cas de problème d'accès au fichier
+    		}
+
+	        
+	        try(FileWriter fw = new FileWriter("D:\\BDD.txt", true);
+	        		BufferedWriter bw = new BufferedWriter(fw);
+	        		PrintWriter out = new PrintWriter(bw))
+	        		{
+	        		 out.println("Ouais test tes t test");
+	        		 out.println(" 1 1 1 1 1 1 1 1 1 1 11 ");
+	        		}
+	        		catch (IOException e)
+	        		{
+	        		 //Gestion des exceptions en cas de problème d'accès au fichier
+	        		}
+	        quitterProgramme();
 
 	        }
 		}

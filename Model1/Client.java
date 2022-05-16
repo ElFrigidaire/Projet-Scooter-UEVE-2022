@@ -83,7 +83,7 @@ public class Client {
     	}
     	return null;
 }
-    public int choixDuScooterARetourner() {
+    public int choixDuScooterARetourner(Parc monParc) {
     	Scanner clav = new Scanner(System.in);
     	int numChoisi;
     	boolean arreterLeChoix = false;
@@ -112,7 +112,7 @@ public class Client {
     			}
     		}
     		if(scooterTrouve==false) {
-    			System.out.println("Vous n'avez pas loué ce scooter. Cependant, les scooters "); 
+    			System.out.println("Vous n'avez pas loué ce scooter. Cependant, vous avez loué les scooters "+monParc.numeroScooterLocation()); 
     		}
     		System.out.println("Voulez-vous entrer un autre numéro? [y]/n");
         	String choix = clav.nextLine();

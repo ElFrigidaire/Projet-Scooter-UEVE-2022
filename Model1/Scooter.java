@@ -23,6 +23,11 @@ public class Scooter {
     	return "Scooter #"+this.numero+", Marque : "+this.modele+", kilométrage : "+this.kilometrage+", est Disponible "+this.estDisponible;
     }
     
+    public String toSave() {
+    	return this.numero+","+this.modele+","+this.kilometrage+","+this.estDisponible;
+    }
+
+    
     //public Modele listModele;
 
     //public Set<Location> listLoc;

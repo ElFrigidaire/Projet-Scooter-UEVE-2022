@@ -118,8 +118,7 @@ public class Main {
   	    //Création de la location
   	    Date date_debut = new SimpleDateFormat("dd/MM/yyyy").parse("18/01/2002");
   	    Date date_fin = new SimpleDateFormat("dd/MM/yyyy").parse("20/01/2002");
-  	    Location location = new Location(date_debut, date_fin, scooterChoisi);
-  	    clientEnCours.listeLocationsEnCours.add(location);
+  	    Location location = new Location(date_debut, date_fin, scooterChoisi, clientEnCours);
   	    monParc.listeLocations.add(location);
 	}
 	
@@ -129,23 +128,21 @@ public class Main {
   	    Client clientEnCours = identificationClient(monParc.listeClients);
     	  
   	    //Demande du scooter réservé
-  	    int idxLocationClient = clientEnCours.choixDuScooterARetourner(monParc);
-  	    if (idxLocationClient == -666) {
+  	    int idxLocationParc = clientEnCours.choixDuScooterARetourner(monParc);
+  	    if (idxLocationParc == -666) {
   	    	System.out.println("Nous regrettons ne pas avoir de quoi vous satisfaire, nous espérons vous revoir une prochaine fois.");
   	    	return ;
   	    }
-  	    Scooter scooterChoisi = clientEnCours.listeLocationsEnCours.get(idxLocationClient).scooterLoué;
+  	    Scooter scooterChoisi = monParc.listeLocations.get(idxLocationParc).scooterLoué;
 
   	    
   	    //Création du retour
   	    Date date = new SimpleDateFormat("dd/MM/yyyy").parse("18/01/2002");
-  	    Retour retour = new Retour(date, scooterChoisi);
+  	    Retour retour = new Retour(date, scooterChoisi, clientEnCours);
   	    retour.demanderKilometrage();
   	    
   	    //Mise à jour des liste de location des clients
-  	    Location location = clientEnCours.listeLocationsEnCours.remove(idxLocationClient);
-  	    Location location2 = monParc.listeLocations.remove(monParc.indexLocationParc(scooterChoisi.numero));
-  	    clientEnCours.listeRetours.add(retour);
+  	    Location location = monParc.listeLocations.remove(monParc.indexLocationParc(scooterChoisi.numero));
   	    monParc.listeRetours.add(retour);
 	}
 	

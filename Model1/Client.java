@@ -18,8 +18,6 @@ public class Client {
 	public String nom;
 	public String prenom;
 	public int age;
-	public ArrayList<Location> listeLocationsEnCours;
-	public ArrayList<Retour> listeRetours;
 	/**
      * Default constructor
      */
@@ -31,13 +29,17 @@ public class Client {
     	this.nom = nom;
     	this.prenom = prenom;
     	this.age = age;
-    	this.listeLocationsEnCours = new ArrayList<Location>();
-    	this.listeRetours = new ArrayList<Retour>();
     }
     
     public String toString() { 
     	return "Client #"+this.numero_client+", adresse : "+this.adresse+", email : "+this.mail+", téléphone :"+this.telephone+", nom : "+this.nom+", prénom : " +this.prenom + ", age : " + this.age;
     } 
+    
+    public String toSave() {
+    	String s = this.numero_client+","+this.adresse+","+this.mail+","+this.telephone+","+this.nom+","+this.prenom+","+this.age;
+    	return s;
+    	}
+    
     
     public Scooter choixDuScooterALouer(Scooter[] listeScooter) {
     	Scanner clav = new Scanner(System.in);
@@ -82,14 +84,16 @@ public class Client {
     	}
     	return null;
 }
-    
-	public ArrayList<Integer> fonctionTest() {
+	public ArrayList<Integer> récupérerNumeroScooterDuClient(Parc monParc) {
 		ArrayList<Integer> listeNumeroLocation = new ArrayList<Integer>(); 
-		for (int i=0; i<this.listeLocationsEnCours.size();i++) {
-			listeNumeroLocation.add(this.listeLocationsEnCours.get(i).scooterLoué.numero);
-			  }
+		for (int i=0; i<monParc.listeLocations.size();i++) {
+			if(this.numero_client==monParc.listeLocations.get(i).client.numero_client) {
+				listeNumeroLocation.add(monParc.listeLocations.get(i).scooterLoué.numero);
+			}
+			}
 			return listeNumeroLocation;
 	}
+    
     public int choixDuScooterARetourner(Parc monParc) {
     	Scanner clav = new Scanner(System.in);
     	int numChoisi;
@@ -100,11 +104,11 @@ public class Client {
         	boolean scooterTrouve = false;
         	
     		//Je parcours la liste de ,location du client 
-    		for (int a = 0; a < this.listeLocationsEnCours.size(); a++) {
+    		for (int a = 0; a < monParc.listeLocations.size(); a++) {
     			
     			//Je regarde si le scooter est dans la liste des locations
-    			if (this.listeLocationsEnCours.get(a).scooterLoué.numero == numChoisi) {
-    				Scooter scooterChoisi = this.listeLocationsEnCours.get(a).scooterLoué;
+    			if (monParc.listeLocations.get(a).scooterLoué.numero == numChoisi) {
+    				Scooter scooterChoisi = monParc.listeLocations.get(a).scooterLoué;
 				//Est-ce que ce scooter a été loué?
 					if (scooterChoisi.estDisponible) {
 						System.out.println("Le Scooter #"+numChoisi+" n'a pas été loué");
@@ -119,7 +123,7 @@ public class Client {
     			}
     		}
     		if(scooterTrouve==false) {
-    			System.out.println("Vous n'avez pas loué ce scooter. Cependant, vous avez loué les scooters "+this.fonctionTest()); 
+    			System.out.println("Vous n'avez pas loué ce scooter. Cependant, vous avez loué les scooters "+this.récupérerNumeroScooterDuClient(monParc)); 
     		}
     		System.out.println("Voulez-vous entrer un autre numéro? [y]/n");
         	String choix = clav.nextLine();

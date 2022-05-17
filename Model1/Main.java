@@ -255,8 +255,22 @@ public class Main {
 	        		BufferedWriter bw = new BufferedWriter(fw);
 	        		PrintWriter out = new PrintWriter(bw))
 	        		{
-	        		 out.println("Ouais test tes t test");
-	        		 out.println(" 1 1 1 1 1 1 1 1 1 1 11 ");
+	        		 out.println("liste Scooter : ");
+	        		 for (int i=0;i<monParc.listeScooters.length;i++) {
+	        			 out.println(monParc.listeScooters[i].toSave());
+	        		 }
+	        		 out.println("\nliste Clients : ");
+	        		 for (int i=0;i<monParc.listeClients.size();i++) {
+	        			 out.println(monParc.listeClients.get(i).toSave());
+	        		 }
+	        		 out.println("\nliste Location : ");
+	        		 for (int i=0;i<monParc.listeLocations.size();i++) {
+	        			 out.println(monParc.listeLocations.get(i).toSave());
+	        		 }
+	        		 out.println("\nliste Retours : ");
+	        		 for (int i=0;i<monParc.listeRetours.size();i++) {
+	        			 out.println(monParc.listeRetours.get(i).toSave());
+	        		 }
 	        		}
 	        		catch (IOException e)
 	        		{

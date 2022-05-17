@@ -28,7 +28,7 @@ public class Location {
     }
     
     public String toSave() {
-    	return this.date_debut+","+this.date_fin+","+this.scooterLoué.toSave()+","+this.client.toSave();
+    	return "LOCATION,"+this.date_debut+","+this.date_fin+","+this.scooterLoué.toSave()+","+this.client.toSave();
     }
     
     

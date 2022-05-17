@@ -24,7 +24,7 @@ public class Scooter {
     }
     
     public String toSave() {
-    	return this.numero+","+this.modele+","+this.kilometrage+","+this.estDisponible;
+    	return "SCOOTER,"+this.numero+","+this.modele+","+this.kilometrage+","+this.estDisponible;
     }
 
     

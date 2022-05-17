@@ -35,8 +35,9 @@ public class Client {
     	return "Client #"+this.numero_client+", adresse : "+this.adresse+", email : "+this.mail+", téléphone :"+this.telephone+", nom : "+this.nom+", prénom : " +this.prenom + ", age : " + this.age;
     } 
     
+    //
     public String toSave() {
-    	String s = this.numero_client+","+this.adresse+","+this.mail+","+this.telephone+","+this.nom+","+this.prenom+","+this.age;
+    	String s = "CLIENT,"+this.numero_client+","+this.adresse+","+this.mail+","+this.telephone+","+this.nom+","+this.prenom+","+this.age;
     	return s;
     	}
     

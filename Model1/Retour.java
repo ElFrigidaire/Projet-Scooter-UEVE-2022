@@ -26,7 +26,7 @@ public class Retour {
     }
     
     public String toSave() {
-    	return this.date+","+this.scooteurARetourner.toSave()+","+this.client.toSave();
+    	return "RETOUR,"+this.date+","+this.scooteurARetourner.toSave()+","+this.client.toSave();
     }
 
     public double demanderKilometrage() {

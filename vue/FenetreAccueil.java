@@ -17,7 +17,7 @@ import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class FenetreAcceuil extends JFrame implements ActionListener {
+public class FenetreAccueil extends JFrame implements ActionListener {
 	
 	
 	private static final long serialVersionUID = 1L;
@@ -29,7 +29,7 @@ public class FenetreAcceuil extends JFrame implements ActionListener {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					FenetreAcceuil frame = new FenetreAcceuil();
+					FenetreAccueil frame = new FenetreAccueil();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -42,7 +42,7 @@ public class FenetreAcceuil extends JFrame implements ActionListener {
 
 	
 	
-	public FenetreAcceuil() {
+	public FenetreAccueil() {
 		
 		
 		setTitle("LouScoot");
@@ -91,12 +91,12 @@ public class FenetreAcceuil extends JFrame implements ActionListener {
 		panelDroite.setLayout(new GridLayout(4, 1));
 		
 		
-		btnEtatScooter = new JButton("Ã‰tat du scooter");
+		btnEtatScooter = new JButton("État du scooter");
 		btnEtatScooter.setForeground(new Color(51, 51, 102));
 		btnEtatScooter.addActionListener(this);
 		panelDroite.add(btnEtatScooter);
 		
-		btnEtatParc = new JButton("Ã‰tat du parc");
+		btnEtatParc = new JButton("État du parc");
 		btnEtatParc.setForeground(new Color(51, 51, 102));
 		btnEtatParc.addActionListener(this);
 		panelDroite.add(btnEtatParc);

@@ -2,7 +2,6 @@ package Model1;
 
 
 import java.util.*;
-import java.util.Scanner;
 
 /**
  * 
@@ -83,6 +82,14 @@ public class Client {
     	}
     	return null;
 }
+    
+	public ArrayList<Integer> fonctionTest(Parc monParc) {
+		ArrayList<Integer> listeNumeroLocation = new ArrayList<Integer>(); 
+		for (int i=0; i<monParc.listeLocations.size();i++) {
+			listeNumeroLocation.add(monParc.listeLocations.get(i).scooterLoué.numero);
+			  }
+			return listeNumeroLocation;
+	}
     public int choixDuScooterARetourner(Parc monParc) {
     	Scanner clav = new Scanner(System.in);
     	int numChoisi;
@@ -112,7 +119,7 @@ public class Client {
     			}
     		}
     		if(scooterTrouve==false) {
-    			System.out.println("Vous n'avez pas loué ce scooter. Cependant, vous avez loué les scooters "+monParc.numeroScooterLocation()); 
+    			System.out.println("Vous n'avez pas loué ce scooter. Cependant, vous avez loué les scooters "+this.fonctionTest(monParc)); 
     		}
     		System.out.println("Voulez-vous entrer un autre numéro? [y]/n");
         	String choix = clav.nextLine();
@@ -123,4 +130,8 @@ public class Client {
     	}
     	return -666;
     }
+    
+
+
+    
 }

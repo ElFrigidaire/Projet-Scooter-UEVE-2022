@@ -123,7 +123,7 @@ public class Main {
   	    monParc.listeLocations.add(location);
 	}
 	
-	public static void retournerUnScooter(Parc monParc)throws Exception {
+	public static void retournerUnScooter(Parc monParc, Client monClient)throws Exception {
 		
 		//Identification du client 
   	    Client clientEnCours = identificationClient(monParc.listeClients);
@@ -271,7 +271,7 @@ public class Main {
 		}
 	
 	public static void quitterProgramme() {
-		
+		System.exit(0);
 	}
 }    
 

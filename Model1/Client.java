@@ -83,10 +83,10 @@ public class Client {
     	return null;
 }
     
-	public ArrayList<Integer> fonctionTest(Parc monParc) {
+	public ArrayList<Integer> fonctionTest() {
 		ArrayList<Integer> listeNumeroLocation = new ArrayList<Integer>(); 
-		for (int i=0; i<monParc.listeLocations.size();i++) {
-			listeNumeroLocation.add(monParc.listeLocations.get(i).scooterLoué.numero);
+		for (int i=0; i<this.listeLocationsEnCours.size();i++) {
+			listeNumeroLocation.add(this.listeLocationsEnCours.get(i).scooterLoué.numero);
 			  }
 			return listeNumeroLocation;
 	}
@@ -119,7 +119,7 @@ public class Client {
     			}
     		}
     		if(scooterTrouve==false) {
-    			System.out.println("Vous n'avez pas loué ce scooter. Cependant, vous avez loué les scooters "+this.fonctionTest(monParc)); 
+    			System.out.println("Vous n'avez pas loué ce scooter. Cependant, vous avez loué les scooters "+this.fonctionTest()); 
     		}
     		System.out.println("Voulez-vous entrer un autre numéro? [y]/n");
         	String choix = clav.nextLine();

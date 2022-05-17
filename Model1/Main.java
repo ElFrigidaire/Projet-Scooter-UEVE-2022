@@ -123,13 +123,13 @@ public class Main {
   	    monParc.listeLocations.add(location);
 	}
 	
-	public static void retournerUnScooter(Parc monParc, Client monClient)throws Exception {
+	public static void retournerUnScooter(Parc monParc)throws Exception {
 		
 		//Identification du client 
   	    Client clientEnCours = identificationClient(monParc.listeClients);
     	  
   	    //Demande du scooter réservé
-  	    int idxLocationClient = clientEnCours.choixDuScooterARetourner();
+  	    int idxLocationClient = clientEnCours.choixDuScooterARetourner(monParc);
   	    if (idxLocationClient == -666) {
   	    	System.out.println("Nous regrettons ne pas avoir de quoi vous satisfaire, nous espérons vous revoir une prochaine fois.");
   	    	return ;

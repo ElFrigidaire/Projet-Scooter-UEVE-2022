@@ -53,7 +53,9 @@ public class Main {
   	    ArrayList<Location> listeLocations = new ArrayList<Location>();
   	    
   	    //Création du parc
-  	    Parc monParc= new Parc(listeScooter, listeClients, listeLocations, listeRetours);
+  	    //Parc monParc= new Parc(listeScooter, listeClients, listeLocations, listeRetours);
+  	    Parc monParc = new Parc("D:\\BDD.txt");
+        monParc.listeScooters = monParc.listeScooters2.toArray(new Scooter[monParc.listeScooters2.size()]);
   	    
   	    //Création et affichage du menu
   	    menu(monParc);

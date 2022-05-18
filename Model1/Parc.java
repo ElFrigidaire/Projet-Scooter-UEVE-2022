@@ -1,8 +1,8 @@
 package Model1;
 
-
+import java.io.*;
 import java.util.*;
-
+import java.text.SimpleDateFormat;
 /**
  * 
  */
@@ -11,6 +11,8 @@ public class Parc {
     ArrayList<Client> listeClients;
     ArrayList<Location> listeLocations;
     ArrayList<Retour> listeRetours;
+	ArrayList<Scooter> listeScooters2 = new ArrayList<Scooter>();                
+
     /**
      * Default constructor
      */
@@ -20,6 +22,39 @@ public class Parc {
     	this.listeLocations = listeLocations;
     	this.listeRetours = listeRetours;
     }
+    
+    public Parc(String fichierDeSauvegarde) {
+            try {
+                File file = new File(fichierDeSauvegarde);
+                
+                //Commence à lire le fichier
+                BufferedReader reader = new BufferedReader(new FileReader(file));
+                String str;
+        		this.listeRetours = new ArrayList<Retour>();
+        		this.listeClients = new ArrayList<Client>();
+        		this.listeLocations = new ArrayList<Location>();
+                while ((str = reader.readLine()) != null) {
+                	if (str.startsWith("SCOOTER")) {
+                		listeScooters2.add(new Scooter(str));
+                	}
+                	else if (str.startsWith("CLIENT")) {
+                		this.listeClients.add(new Client(str));
+                	}
+                	else if (str.startsWith("LOCATION")) {
+                		this.listeLocations.add(new Location(str));
+                	}
+                	else if (str.startsWith("RETOUR")) {
+                		this.listeRetours.add(new Retour(str));
+                	}
+                	}
+                this.listeScooters = listeScooters2.toArray(new Scooter[listeScooters2.size()]);
+                reader.close();
+                } 
+            catch (Exception e) {
+            
+            System.out.println(e);
+            }
+        }
     
     
     public void debug() {

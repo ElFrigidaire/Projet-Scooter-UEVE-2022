@@ -30,12 +30,24 @@ public class Client {
     	this.prenom = prenom;
     	this.age = age;
     }
+    public Client(String prisDuTxt) {
+    	String[] tableauString = prisDuTxt.split(",");
+    	this.numero_client = Integer.parseInt(tableauString[1]);
+    	this.adresse = tableauString[2];
+    	this.mail = tableauString[3];
+    	this.telephone = tableauString[4];
+    	this.nom = tableauString[5];
+    	this.prenom = tableauString[6];
+    	this.age = Integer.parseInt(tableauString[7]);
+    }
+   
+
     
     public String toString() { 
     	return "Client #"+this.numero_client+", adresse : "+this.adresse+", email : "+this.mail+", téléphone :"+this.telephone+", nom : "+this.nom+", prénom : " +this.prenom + ", age : " + this.age;
     } 
     
-    //
+    //Permet de sauvegarder dans le texte
     public String toSave() {
     	String s = "CLIENT,"+this.numero_client+","+this.adresse+","+this.mail+","+this.telephone+","+this.nom+","+this.prenom+","+this.age;
     	return s;

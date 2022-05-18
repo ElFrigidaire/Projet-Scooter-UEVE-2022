@@ -19,6 +19,17 @@ public class Scooter {
 		this.kilometrage = kilometrage;
 		this.estDisponible = true;
 	}
+    
+    public Scooter(String prisDuTxt) {
+    	String[] tableauString = prisDuTxt.split(",");
+		this.modele = tableauString[2];
+		this.numero = Integer.parseInt(tableauString[1]);
+		this.kilometrage = Double.parseDouble(tableauString[3]);
+		this.estDisponible = Boolean.parseBoolean(tableauString[4]);;
+    }
+    
+    
+    
     public String toString() {
     	return "Scooter #"+this.numero+", Marque : "+this.modele+", kilométrage : "+this.kilometrage+", est Disponible "+this.estDisponible;
     }
